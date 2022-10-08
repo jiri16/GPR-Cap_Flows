@@ -1,3 +1,7 @@
+#US holdings
+line em_total_hol ae_total_hol ym if inrange(ym, ym(1994,4), ym(2021,11)), sort
+
+
 #bond and stock flows
 line ma3_em_bond_flow_hol em_gprc_wavg ym if inrange(ym, ym(1994,4), ym(2021,11)), yline(0) sort
 line ma3_em_stock_flow_hol em_gprc_wavg ym if inrange(ym, ym(1994,4), ym(2021,11)), yline(0) sort
