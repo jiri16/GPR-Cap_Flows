@@ -1,14 +1,14 @@
 foreach x in w_n_bond_hol {
 
-xtreg `x' gprc gprc_x_s_vae s_vae i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_vae vae i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline1
-xtreg `x' gprc gprc_x_s_vae s_vae l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_vae vae l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline2
-xtreg `x' gprc gprc_x_s_vae s_vae l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_vae vae l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline3
-xtreg `x' gprc gprc_x_s_vae s_vae l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_vae vae l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline4
-xtreg `x' gprc gprc_x_s_vae s_vae l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_vae vae l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline5
 
 }
@@ -18,15 +18,15 @@ esttab baseline* using "vae_xtreg_bond.csv", plain replace b(%9.5f) se(%9.5f) st
 
 foreach x in w_n_stock_hol {
 
-xtreg `x' gprc gprc_x_s_vae s_vae i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_vae vae i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline1
-xtreg `x' gprc gprc_x_s_vae s_vae l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_vae vae l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline2
-xtreg `x' gprc gprc_x_s_vae s_vae l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_vae vae l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline3
-xtreg `x' gprc gprc_x_s_vae s_vae l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_vae vae l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline4
-xtreg `x' gprc gprc_x_s_vae s_vae l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_vae vae l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline5
 
 
@@ -51,15 +51,15 @@ esttab baseline* using "vae_xtreg_stock.csv", plain replace b(%9.5f) se(%9.5f) s
 
 foreach x in w_n_bond_hol {
 
-xtreg `x' gprc gprc_x_s_pve s_pve i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_pve pve i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline1
-xtreg `x' gprc gprc_x_s_pve s_pve l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_pve pve l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline2
-xtreg `x' gprc gprc_x_s_pve s_pve l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_pve pve l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline3
-xtreg `x' gprc gprc_x_s_pve s_pve l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_pve pve l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline4
-xtreg `x' gprc gprc_x_s_pve s_pve l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_pve pve l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline5
 
 }
@@ -69,15 +69,15 @@ esttab baseline* using "pve_xtreg_bond.csv", plain replace b(%9.5f) se(%9.5f) st
 
 foreach x in w_n_stock_hol {
 
-xtreg `x' gprc gprc_x_s_pve s_pve i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_pve pve i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline1
-xtreg `x' gprc gprc_x_s_pve s_pve l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_pve pve l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline2
-xtreg `x' gprc gprc_x_s_pve s_pve l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_pve pve l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline3
-xtreg `x' gprc gprc_x_s_pve s_pve l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_pve pve l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline4
-xtreg `x' gprc gprc_x_s_pve s_pve l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_pve pve l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline5
 
 
@@ -101,15 +101,15 @@ esttab baseline* using "pve_xtreg_stock.csv", plain replace b(%9.5f) se(%9.5f) s
 
 foreach x in w_n_bond_hol {
 
-xtreg `x' gprc gprc_x_s_gee s_gee i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_gee gee i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline1
-xtreg `x' gprc gprc_x_s_gee s_gee l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_gee gee l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline2
-xtreg `x' gprc gprc_x_s_gee s_gee l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_gee gee l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline3
-xtreg `x' gprc gprc_x_s_gee s_gee l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_gee gee l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline4
-xtreg `x' gprc gprc_x_s_gee s_gee l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_gee gee l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline5
 
 }
@@ -119,15 +119,15 @@ esttab baseline* using "gee_xtreg_bond.csv", plain replace b(%9.5f) se(%9.5f) st
 
 foreach x in w_n_stock_hol {
 
-xtreg `x' gprc gprc_x_s_gee s_gee i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_gee gee i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline1
-xtreg `x' gprc gprc_x_s_gee s_gee l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_gee gee l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline2
-xtreg `x' gprc gprc_x_s_gee s_gee l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_gee gee l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline3
-xtreg `x' gprc gprc_x_s_gee s_gee l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_gee gee l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline4
-xtreg `x' gprc gprc_x_s_gee s_gee l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_gee gee l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline5
 
 
@@ -154,15 +154,15 @@ esttab baseline* using "gee_xtreg_stock.csv", plain replace b(%9.5f) se(%9.5f) s
 
 foreach x in w_n_bond_hol {
 
-xtreg `x' gprc gprc_x_s_rqe s_rqe i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rqe rqe i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline1
-xtreg `x' gprc gprc_x_s_rqe s_rqe l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rqe rqe l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline2
-xtreg `x' gprc gprc_x_s_rqe s_rqe l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rqe rqe l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline3
-xtreg `x' gprc gprc_x_s_rqe s_rqe l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rqe rqe l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline4
-xtreg `x' gprc gprc_x_s_rqe s_rqe l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rqe rqe l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline5
 
 }
@@ -172,15 +172,15 @@ esttab baseline* using "rqe_xtreg_bond.csv", plain replace b(%9.5f) se(%9.5f) st
 
 foreach x in w_n_stock_hol {
 
-xtreg `x' gprc gprc_x_s_rqe s_rqe i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rqe rqe i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline1
-xtreg `x' gprc gprc_x_s_rqe s_rqe l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rqe rqe l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline2
-xtreg `x' gprc gprc_x_s_rqe s_rqe l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rqe rqe l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline3
-xtreg `x' gprc gprc_x_s_rqe s_rqe l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rqe rqe l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline4
-xtreg `x' gprc gprc_x_s_rqe s_rqe l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rqe rqe l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline5
 
 
@@ -203,15 +203,15 @@ esttab baseline* using "rqe_xtreg_stock.csv", plain replace b(%9.5f) se(%9.5f) s
 
 foreach x in w_n_bond_hol {
 
-xtreg `x' gprc gprc_x_s_rle s_rle i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rle rle i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline1
-xtreg `x' gprc gprc_x_s_rle s_rle l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rle rle l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline2
-xtreg `x' gprc gprc_x_s_rle s_rle l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rle rle l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline3
-xtreg `x' gprc gprc_x_s_rle s_rle l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rle rle l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline4
-xtreg `x' gprc gprc_x_s_rle s_rle l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rle rle l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline5
 
 }
@@ -221,15 +221,15 @@ esttab baseline* using "rle_xtreg_bond.csv", plain replace b(%9.5f) se(%9.5f) st
 
 foreach x in w_n_stock_hol {
 
-xtreg `x' gprc gprc_x_s_rle s_rle i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rle rle i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline1
-xtreg `x' gprc gprc_x_s_rle s_rle l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rle rle l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline2
-xtreg `x' gprc gprc_x_s_rle s_rle l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rle rle l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline3
-xtreg `x' gprc gprc_x_s_rle s_rle l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rle rle l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline4
-xtreg `x' gprc gprc_x_s_rle s_rle l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_rle rle l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline5
 
 
@@ -252,15 +252,15 @@ esttab baseline* using "rle_xtreg_stock.csv", plain replace b(%9.5f) se(%9.5f) s
 
 foreach x in w_n_bond_hol {
 
-xtreg `x' gprc gprc_x_s_cce s_cce i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_cce cce i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline1
-xtreg `x' gprc gprc_x_s_cce s_cce l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_cce cce l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline2
-xtreg `x' gprc gprc_x_s_cce s_cce l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_cce cce l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline3
-xtreg `x' gprc gprc_x_s_cce s_cce l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_cce cce l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline4
-xtreg `x' gprc gprc_x_s_cce s_cce l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_cce cce l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline5
 
 }
@@ -270,15 +270,15 @@ esttab baseline* using "cce_xtreg_bond.csv", plain replace b(%9.5f) se(%9.5f) st
 
 foreach x in w_n_stock_hol {
 
-xtreg `x' gprc gprc_x_s_cce s_cce i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_cce cce i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline1
-xtreg `x' gprc gprc_x_s_cce s_cce l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_cce cce l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline2
-xtreg `x' gprc gprc_x_s_cce s_cce l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_cce cce l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline3
-xtreg `x' gprc gprc_x_s_cce s_cce l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_cce cce l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline4
-xtreg `x' gprc gprc_x_s_cce s_cce l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+xtreg `x' gprc gprc_x_cce cce l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
 est store baseline5
 
 
