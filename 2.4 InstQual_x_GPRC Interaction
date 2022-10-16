@@ -285,3 +285,65 @@ est store baseline5
 }
 esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
 esttab baseline* using "cce_xtreg_stock.csv", plain replace b(%9.5f) se(%9.5f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+foreach x in w_n_bond_hol {
+
+xtreg `x' gprc gprc_x_vae gprc_x_pve gprc_x_gee gprc_x_rqe gprc_x_rle gprc_x_cce vae pve gee rqe rle cce i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+est store baseline1
+xtreg `x' gprc gprc_x_vae gprc_x_pve gprc_x_gee gprc_x_rqe gprc_x_rle gprc_x_cce vae pve gee rqe rle cce l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+est store baseline2
+xtreg `x' gprc gprc_x_vae gprc_x_pve gprc_x_gee gprc_x_rqe gprc_x_rle gprc_x_cce vae pve gee rqe rle cce l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+est store baseline3
+xtreg `x' gprc gprc_x_vae gprc_x_pve gprc_x_gee gprc_x_rqe gprc_x_rle gprc_x_cce vae pve gee rqe rle cce l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+est store baseline4
+xtreg `x' gprc gprc_x_vae gprc_x_pve gprc_x_gee gprc_x_rqe gprc_x_rle gprc_x_cce vae pve gee rqe rle cce l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+est store baseline5
+
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline* using "inst_qual_xtreg_bond.csv", plain replace b(%9.5f) se(%9.5f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+
+
+foreach x in w_n_stock_hol {
+
+xtreg `x' gprc gprc_x_vae gprc_x_pve gprc_x_gee gprc_x_rqe gprc_x_rle gprc_x_cce vae pve gee rqe rle cce i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+est store baseline1
+xtreg `x' gprc gprc_x_vae gprc_x_pve gprc_x_gee gprc_x_rqe gprc_x_rle gprc_x_cce vae pve gee rqe rle cce l1.`x' l2.`x' l3.`x' i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+est store baseline2
+xtreg `x' gprc gprc_x_vae gprc_x_pve gprc_x_gee gprc_x_rqe gprc_x_rle gprc_x_cce vae pve gee rqe rle cce l1.`x' l2.`x' l3.`x' fed vix gr_reer gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+est store baseline3
+xtreg `x' gprc gprc_x_vae gprc_x_pve gprc_x_gee gprc_x_rqe gprc_x_rle gprc_x_cce vae pve gee rqe rle cce l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci i.ym if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+est store baseline4
+xtreg `x' gprc gprc_x_vae gprc_x_pve gprc_x_gee gprc_x_rqe gprc_x_rle gprc_x_cce vae pve gee rqe rle cce l1.`x' l2.`x' l3.`x' fed vix gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), fe vce(cluster ifs)
+est store baseline5
+
+
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline* using "inst_qual_xtreg_stock.csv", plain replace b(%9.5f) se(%9.5f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
