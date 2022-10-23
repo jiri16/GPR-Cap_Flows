@@ -20,5 +20,5 @@ est store baseline6
 
 }
 esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
-esttab baseline* using "em_interaction.csv", plain replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline* using "2.1.em_interaction.csv", plain br replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
 estimates clear
