@@ -1,7 +1,7 @@
-#Figure 1
+#Figure 1.A
 line em_total_hol ae_total_hol ym if inrange(ym, ym(1994,4), ym(2021,11)), graphregion(color(white)) sort
 
-#Figure 2
+#Figure 1
 twoway line ma3_bond_flow ym if inrange(ym, ym(1994,4), ym(2021,11)), yaxis(2) sort || line gprc_wavg ym if inrange(ym, ym(1994,4), ym(2021,11)), yaxis(1) graphregion(color(white)) sort
 twoway line ma3_stock_flow ym if inrange(ym, ym(1994,4), ym(2021,11)), yaxis(2) sort || line gprc_wavg ym if inrange(ym, ym(1994,4), ym(2021,11)), yaxis(1) graphregion(color(white)) sort
 
