@@ -1,0 +1,7 @@
+corr bond_flow_hol stock_flow_hol
+corr bond_flow_hol gprc_wavg
+corr stock_flow_hol gprc_wavg
+
+
+corr bond_flow_hol gprc_wavg if year!=2001 & year!=2003
+corr stock_flow_hol gprc_wavg if year!=2001 & year!=2003
