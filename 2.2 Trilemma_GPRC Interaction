@@ -26,3 +26,155 @@ est store baseline8
 esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
 esttab baseline* using "2.2.trilemma.csv", plain br replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
 estimates clear
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+foreach x in w_n_bond_hol {
+
+reghdfe `x' gprc gprc_x_ers  gprc_x_ka_open ers  ka_open l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe `x' gprc gprc_x_ers  gprc_x_ka_open ers  ka_open l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe `x' gprc gprc_x_ers  gprc_x_ka_open ers  ka_open l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+reghdfe `x' gprc gprc_x_ers  gprc_x_ka_open ers  ka_open l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ym) vce(cluster ifs)
+est store baseline4
+
+}
+
+foreach x in w_n_stock_hol {
+
+reghdfe `x' gprc gprc_x_ers  gprc_x_ka_open ers  ka_open l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe `x' gprc gprc_x_ers  gprc_x_ka_open ers  ka_open l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline6
+reghdfe `x' gprc gprc_x_ers  gprc_x_ka_open ers  ka_open l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs ym) vce(cluster ifs)
+est store baseline7
+reghdfe `x' gprc gprc_x_ers  gprc_x_ka_open ers  ka_open l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ym) vce(cluster ifs)
+est store baseline8
+
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline* using "2.2.1.no_mi.csv", plain br replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+estimates clear
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+foreach x in w_n_bond_hol {
+
+reghdfe `x' gprc gprc_x_ers ers  l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe `x' gprc gprc_x_ers  ers  l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe `x' gprc gprc_x_ers  ers  l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+reghdfe `x' gprc gprc_x_ers ers l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ym) vce(cluster ifs)
+est store baseline4
+
+}
+
+foreach x in w_n_stock_hol {
+
+reghdfe `x' gprc gprc_x_ers ers l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe `x' gprc gprc_x_ers ers l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline6
+reghdfe `x' gprc gprc_x_ers  ers l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs ym) vce(cluster ifs)
+est store baseline7
+reghdfe `x' gprc gprc_x_ers ers l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ym) vce(cluster ifs)
+est store baseline8
+
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline* using "2.2.2.ers.csv", plain br replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+estimates clear
+
+
+
+
+
+
+foreach x in w_n_bond_hol {
+
+reghdfe `x' gprc  gprc_x_mi  mi  l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe `x' gprc gprc_x_mi mi l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe `x' gprc  gprc_x_mi  mi  l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+reghdfe `x' gprc gprc_x_mi mi  l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ym) vce(cluster ifs)
+est store baseline4
+
+}
+
+foreach x in w_n_stock_hol {
+
+reghdfe `x' gprc gprc_x_mi  mi  l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe `x' gprc gprc_x_mi  mi l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline6
+reghdfe `x' gprc  gprc_x_mi  mi  l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs ym) vce(cluster ifs)
+est store baseline7
+reghdfe `x' gprc  gprc_x_mi  mi l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ym) vce(cluster ifs)
+est store baseline8
+
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline* using "2.2.2.mi.csv", plain br replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+estimates clear
+
+
+
+
+
+
+foreach x in w_n_bond_hol {
+
+reghdfe `x' gprc gprc_x_ka_open ka_open l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe `x' gprc gprc_x_ka_open ka_open l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe `x' gprc gprc_x_ka_open  ka_open l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+reghdfe `x' gprc gprc_x_ka_open ka_open l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ym) vce(cluster ifs)
+est store baseline4
+
+}
+
+foreach x in w_n_stock_hol {
+
+reghdfe `x' gprc gprc_x_ka_open ka_open l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe `x' gprc  gprc_x_ka_open ka_open l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline6
+reghdfe `x' gprc gprc_x_ka_open ka_open l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs ym) vce(cluster ifs)
+est store baseline7
+reghdfe `x' gprc  gprc_x_ka_open ka_open l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ym) vce(cluster ifs)
+est store baseline8
+
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline* using "2.2.2.kaopen.csv", plain br replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+estimates clear
