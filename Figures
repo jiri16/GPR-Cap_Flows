@@ -20,3 +20,23 @@ summarize ma3_stock_flow
 local min = r(min)
 twoway (area recession ym if inrange(ym, ym(1994,4), ym(2021,11)),   color(gs14)  base(`min')) line ma3_stock_flow ym if inrange(ym, ym(1994,4), ym(2021,11)), sort || line gprc_wavg ym if inrange(ym, ym(1994,4), ym(2021,11)), graphregion(color(white)) sort
 drop recession
+
+
+
+
+#Density
+kdensity iq, nograph generate(x fx)
+kdensity iq if em==1, nograph generate(fx0) at(x)
+kdensity iq if em==0, nograph generate(fx1) at(x)
+label var fx0 "Emerging market economies"
+label var fx1 "Advanced economies"
+line fx0 fx1 x, sort ytitle(Density)
+
+
+dep_eq_gdp
+dep_bo_gdp
+er_regime
+ka_open
+
+
+
