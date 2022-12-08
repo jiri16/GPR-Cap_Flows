@@ -1,0 +1,8 @@
+by ifs (ym): replace er_regime = 13 if ifs==124 & year>=1999
+by ifs (ym): replace er_regime = 13 if ifs==132 & year>=1999
+by ifs (ym): replace er_regime = 13 if ifs==134 & year>=1999
+by ifs (ym): replace er_regime = 13 if ifs==136 & year>=1999
+by ifs (ym): replace er_regime = 13 if ifs==138 & year>=1999
+by ifs (ym): replace er_regime = 13 if ifs==172 & year>=1999
+by ifs (ym): replace er_regime = 13 if ifs==182 & year>=1999
+by ifs (ym): replace er_regime = 13 if ifs==184 & year>=1999
