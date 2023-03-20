@@ -1,0 +1,19 @@
+****Bloom dataset
+
+
+
+
+****Our dataset
+
+// collapse to quarterly
+
+gen date = date(month, "MDY")
+format date %td
+generate qtr = quarter(date)
+
+collapse (first)  (last) bt_hol_bond bt_hol_stock (mean)  (sum) bt_us_net_pur_bond bt_us_net_pur_stock, by(ifs year quarter)
+
+
+
+
+
