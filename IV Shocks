@@ -11,7 +11,7 @@ gen date = date(month, "MDY")
 format date %td
 generate qtr = quarter(date)
 
-collapse (first)  (last) bt_hol_bond bt_hol_stock gprc tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci em (sum) bt_us_net_pur_bond bt_us_net_pur_stock, by(ifs year qtr)
+collapse (last) bt_hol_bond bt_hol_stock gprc tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci em (sum) bt_us_net_pur_bond bt_us_net_pur_stock, by(ifs year qtr)
 
 
 
