@@ -44,13 +44,13 @@ est restore _ivreg2_gprc
 outreg2 using "Bond_1.xls", ctitle("gprc_1st") addtext(" - Period FE", NO," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 erase "Bond_1.txt"
 
-ivreg2 w_n_bond_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci i.ifs (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock), cluster(ifs) partial(i.ifs)
+ivreg2 w_n_bond_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci i.ifs (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock), cluster(ifs) partial(i.ifs) first savefirst
 outreg2 using "Bond_2.xls", ctitle("bonds(2)") addtext(" - Period FE", NO," - Country FE", YES, Hansen J, `e(jp)', F-Stat, `e(F)') alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 est restore _ivreg2_gprc
 outreg2 using "Bond_2.xls", ctitle("gprc_1st") addtext(" - Period FE", NO," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 erase "Bond_2.txt"
 
-ivreg2 w_n_bond_hol gr_indprod inf st_ir gr_er gr_msci i.ifs i.yq (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock), cluster(ifs) partial(i.ifs i.yq)
+ivreg2 w_n_bond_hol gr_indprod inf st_ir gr_er gr_msci i.ifs i.yq (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock), cluster(ifs) partial(i.ifs i.yq) first savefirst
 outreg2 using "Bond_3.xls", ctitle("bonds(3)") addtext(" - Period FE", YES," - Country FE", YES, Hansen J, `e(jp)', F-Stat, `e(F)') alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 est restore _ivreg2_gprc
 outreg2 using "Bond_3.xls", ctitle("gprc_1st") addtext(" - Period FE", YES," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
@@ -62,13 +62,13 @@ est restore _ivreg2_gprc
 outreg2 using "Stock_1.xls", ctitle("gprc_1st") addtext(" - Period FE", NO," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 erase "Stock_1.txt"
 
-ivreg2 w_n_stock_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci i.ifs (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock), cluster(ifs) partial(i.ifs)
+ivreg2 w_n_stock_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci i.ifs (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock), cluster(ifs) partial(i.ifs) first savefirst
 outreg2 using "Stock_2.xls", ctitle("stocks(2)") addtext(" - Period FE", NO," - Country FE", YES, Hansen J, `e(jp)', F-Stat, `e(F)') alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 est restore _ivreg2_gprc
 outreg2 using "Stock_2.xls", ctitle("gprc_1st") addtext(" - Period FE", NO," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 erase "Stock_2.txt"
 
-ivreg2 w_n_stock_hol gr_indprod inf st_ir gr_er gr_msci i.ifs i.yq (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock), cluster(ifs) partial(i.ifs i.yq)
+ivreg2 w_n_stock_hol gr_indprod inf st_ir gr_er gr_msci i.ifs i.yq (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock), cluster(ifs) partial(i.ifs i.yq) first savefirst
 outreg2 using "Stock_3.xls", ctitle("stocks(3)") addtext(" - Period FE", YES," - Country FE", YES, Hansen J, `e(jp)', F-Stat, `e(F)') alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 est restore _ivreg2_gprc
 outreg2 using "Stock_3.xls", ctitle("gprc_1st") addtext(" - Period FE", YES," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
@@ -82,13 +82,13 @@ est restore _ivreg2_gprc
 outreg2 using "em_Bond_1.xls", ctitle("gprc_1st") addtext(" - Period FE", NO," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 erase "em_Bond_1.txt"
 
-ivreg2 w_n_bond_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci i.ifs (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==1, cluster(ifs) partial(i.ifs)
+ivreg2 w_n_bond_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci i.ifs (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==1, cluster(ifs) partial(i.ifs) first savefirst
 outreg2 using "em_Bond_2.xls", ctitle("bonds(2)") addtext(" - Period FE", NO," - Country FE", YES, Hansen J, `e(jp)', F-Stat, `e(F)') alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 est restore _ivreg2_gprc
 outreg2 using "em_Bond_2.xls", ctitle("gprc_1st") addtext(" - Period FE", NO," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 erase "em_Bond_2.txt"
 
-ivreg2 w_n_bond_hol gr_indprod inf st_ir gr_er gr_msci i.ifs i.yq (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==1, cluster(ifs) partial(i.ifs i.yq)
+ivreg2 w_n_bond_hol gr_indprod inf st_ir gr_er gr_msci i.ifs i.yq (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==1, cluster(ifs) partial(i.ifs i.yq) first savefirst
 outreg2 using "em_Bond_3.xls", ctitle("bonds(3)") addtext(" - Period FE", YES," - Country FE", YES, Hansen J, `e(jp)', F-Stat, `e(F)') alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 est restore _ivreg2_gprc
 outreg2 using "em_Bond_3.xls", ctitle("gprc_1st") addtext(" - Period FE", YES," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
@@ -100,13 +100,13 @@ est restore _ivreg2_gprc
 outreg2 using "em_Stock_1.xls", ctitle("gprc_1st") addtext(" - Period FE", NO," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 erase "em_Stock_1.txt"
 
-ivreg2 w_n_stock_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci i.ifs (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==1, cluster(ifs) partial(i.ifs)
+ivreg2 w_n_stock_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci i.ifs (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==1, cluster(ifs) partial(i.ifs) first savefirst
 outreg2 using "em_Stock_2.xls", ctitle("stocks(2)") addtext(" - Period FE", NO," - Country FE", YES, Hansen J, `e(jp)', F-Stat, `e(F)') alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 est restore _ivreg2_gprc
 outreg2 using "em_Stock_2.xls", ctitle("gprc_1st") addtext(" - Period FE", NO," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 erase "em_Stock_2.txt"
 
-ivreg2 w_n_stock_hol gr_indprod inf st_ir gr_er gr_msci i.ifs i.yq (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==1, cluster(ifs) partial(i.ifs i.yq)
+ivreg2 w_n_stock_hol gr_indprod inf st_ir gr_er gr_msci i.ifs i.yq (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==1, cluster(ifs) partial(i.ifs i.yq) first savefirst
 outreg2 using "em_Stock_3.xls", ctitle("stocks(3)") addtext(" - Period FE", YES," - Country FE", YES, Hansen J, `e(jp)', F-Stat, `e(F)') alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 est restore _ivreg2_gprc
 outreg2 using "em_Stock_3.xls", ctitle("gprc_1st") addtext(" - Period FE", YES," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
@@ -121,13 +121,13 @@ est restore _ivreg2_gprc
 outreg2 using "ae_Bond_1.xls", ctitle("gprc_1st") addtext(" - Period FE", NO," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 erase "ae_Bond_1.txt"
 
-ivreg2 w_n_bond_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci i.ifs (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==0, cluster(ifs) partial(i.ifs)
+ivreg2 w_n_bond_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci i.ifs (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==0, cluster(ifs) partial(i.ifs) first savefirst
 outreg2 using "ae_Bond_2.xls", ctitle("bonds(2)") addtext(" - Period FE", NO," - Country FE", YES, Hansen J, `e(jp)', F-Stat, `e(F)') alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 est restore _ivreg2_gprc
 outreg2 using "ae_Bond_2.xls", ctitle("gprc_1st") addtext(" - Period FE", NO," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 erase "ae_Bond_2.txt"
 
-ivreg2 w_n_bond_hol gr_indprod inf st_ir gr_er gr_msci i.ifs i.yq (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==0, cluster(ifs) partial(i.ifs i.yq)
+ivreg2 w_n_bond_hol gr_indprod inf st_ir gr_er gr_msci i.ifs i.yq (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==0, cluster(ifs) partial(i.ifs i.yq) first savefirst
 outreg2 using "ae_Bond_3.xls", ctitle("bonds(3)") addtext(" - Period FE", YES," - Country FE", YES, Hansen J, `e(jp)', F-Stat, `e(F)') alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 est restore _ivreg2_gprc
 outreg2 using "ae_Bond_3.xls", ctitle("gprc_1st") addtext(" - Period FE", YES," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
@@ -139,13 +139,13 @@ est restore _ivreg2_gprc
 outreg2 using "ae_Stock_1.xls", ctitle("gprc_1st") addtext(" - Period FE", NO," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 erase "ae_Stock_1.txt"
 
-ivreg2 w_n_stock_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci i.ifs (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==0, cluster(ifs) partial(i.ifs)
+ivreg2 w_n_stock_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci i.ifs (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==0, cluster(ifs) partial(i.ifs) first savefirst
 outreg2 using "ae_Stock_2.xls", ctitle("stocks(2)") addtext(" - Period FE", NO," - Country FE", YES, Hansen J, `e(jp)', F-Stat, `e(F)') alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 est restore _ivreg2_gprc
 outreg2 using "ae_Stock_2.xls", ctitle("gprc_1st") addtext(" - Period FE", NO," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 erase "ae_Stock_2.txt"
 
-ivreg2 w_n_stock_hol gr_indprod inf st_ir gr_er gr_msci i.ifs i.yq (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==0, cluster(ifs) partial(i.ifs i.yq)
+ivreg2 w_n_stock_hol gr_indprod inf st_ir gr_er gr_msci i.ifs i.yq (gprc=f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock) if em==0, cluster(ifs) partial(i.ifs i.yq) first savefirst
 outreg2 using "ae_Stock_3.xls", ctitle("stocks(3)") addtext(" - Period FE", YES," - Country FE", YES, Hansen J, `e(jp)', F-Stat, `e(F)') alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
 est restore _ivreg2_gprc
 outreg2 using "ae_Stock_3.xls", ctitle("gprc_1st") addtext(" - Period FE", YES," - Country FE", YES) alpha(0.01, 0.05, 0.1) symbol(***,**,*) bdec(3) se nocons label 
