@@ -152,6 +152,71 @@ erase "ae_Stock_3.txt"
 
 
 
+// OLS (without GPRC)
+
+foreach x in w_n_bond_hol {
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+}
+foreach x in w_n_stock_hol {
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline4
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs ym) vce(cluster ifs)
+est store baseline6
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
+esttab baseline* using "1.baseline.csv", plain br replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
+estimates clear
+
+
+foreach x in w_n_bond_hol {
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)) & em==1, absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4) & em==1, ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)) & em==1, absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+}
+foreach x in w_n_stock_hol {
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)) & em==1, absorb(ifs) vce(cluster ifs)
+est store baseline4
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4) & em==1, ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)) & em==1, absorb(ifs ym) vce(cluster ifs)
+est store baseline6
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
+esttab baseline* using "2.EM.csv", plain br replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
+estimates clear
+
+
+foreach x in w_n_bond_hol {
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)) & em==0, absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4) & em==0, ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)) & em==0, absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+}
+foreach x in w_n_stock_hol {
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)) & em==0, absorb(ifs) vce(cluster ifs)
+est store baseline4
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4) & em==0, ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe `x' f.l1savgnatshock f.l1savgpolshock f.l1savgrevshock f.l1savgtershock gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)) & em==0, absorb(ifs ym) vce(cluster ifs)
+est store baseline6
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
+esttab baseline* using "3.AE.csv", plain br replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
+estimates clear
+
+
 
 
 
