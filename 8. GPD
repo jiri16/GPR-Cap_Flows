@@ -19,7 +19,7 @@ save "C:\Users\havelji\Desktop\GPRC\working_data.dta", replace
 
 ** create new variable
 gen gprc_x_gpd = gprc*idealpointdistance
-
+rename idealpointdistance gpd
 
 ** regression
 * both EM and AE
