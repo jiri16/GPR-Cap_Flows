@@ -24,6 +24,7 @@ rename idealpointdistance gpd
 ** regression
 * both EM and AE
 
+xtset ifs ym
 foreach x in w_n_bond_hol {
 
 reghdfe `x' gprc gprc_x_gpd gpd l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
@@ -57,6 +58,7 @@ estimates clear
 
 * EM only
 
+xtset ifs ym
 foreach x in w_n_bond_hol {
 
 reghdfe `x' gprc gprc_x_gpd gpd l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if em==1 & inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
@@ -90,6 +92,7 @@ estimates clear
 
 * EM only
 
+xtset ifs ym
 foreach x in w_n_bond_hol {
 
 reghdfe `x' gprc gprc_x_gpd gpd l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if em==0 & inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
