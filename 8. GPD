@@ -20,7 +20,7 @@ save "C:\Users\havelji\Desktop\GPRC\idealpointdistance.dta", replace
 ** merge with our dataset
 use working_data.dta
 
-merge m:m iso3 year using "C:\Users\havelji\Desktop\GPRC\idealpointdistance.dta", keepusing(idealpointdistance)
+merge m:m iso3 year using "C:\Users\jirih\Desktop\Research\SYC\GPR\GPD\GPD for merging.dta", keepusing(idealpointdistance)
 drop if _merge==2
 drop _merge
 
