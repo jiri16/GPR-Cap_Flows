@@ -2,8 +2,16 @@
 use idealpointdistance.dta
 
 drop v1 sessionx ccode1 ccode2 agree xx nvotesallx idealpointallx qoallx q5allx q10allx q50allx q90allx q95allx q100allx xy nvotesally idealpointally qoally q5ally q10ally q50ally q90ally q95ally q100ally
+replace idealpointdistance="" if idealpointdistance=="NA"
+destring idealpointdistance, replace
+sort idealpointdistance
+drop if iso3cx=="NA"
+drop if iso3cy=="NA"
+
 
 drop if iso3cx!="USA"
+
+
 rename iso3cy iso3
 
 save "C:\Users\havelji\Desktop\GPRC\idealpointdistance.dta", replace
