@@ -9,6 +9,12 @@ save C:\Users\Lenovo\Desktop\Research\SYC\GPR\collapsed_year.dta, replace
 
 
 xtset ifs year
-reghdfe iq_year gprc_year, absorb(ifs year) vce(cluster ifs)
-reghdfe iq_year gprc_year if em==1, absorb(ifs year) vce(cluster ifs)
-reghdfe iq_year gprc_year if em==0, absorb(ifs year) vce(cluster ifs)
+reghdfe iq_year l.gprc_year
+reghdfe iq_year l.gprc_year, absorb(ifs year) vce(cluster ifs)
+reghdfe iq_year l.gprc_year if em==1, absorb(ifs year) vce(cluster ifs)
+reghdfe iq_year l.gprc_year if em==0, absorb(ifs year) vce(cluster ifs)
+
+
+reghdfe iq_year l.gprc_year, absorb(ifs) vce(cluster ifs)
+reghdfe iq_year l.gprc_year if em==1, absorb(ifs) vce(cluster ifs)
+reghdfe iq_year l.gprc_year if em==0, absorb(ifs) vce(cluster ifs)
