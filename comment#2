@@ -1,0 +1,14 @@
+use C:\Users\Lenovo\Desktop\Research\SYC\GPR\working_data.dta 
+
+save C:\Users\Lenovo\Desktop\Research\SYC\GPR\collapsed_year.dta, replace
+
+collapse (mean) gprc_year=gprc iq_year=iq em=em, by(ifs year)
+
+save C:\Users\Lenovo\Desktop\Research\SYC\GPR\collapsed_year.dta, replace
+
+
+
+xtset ifs year
+reghdfe iq_year gprc_year, absorb(ifs year) vce(cluster ifs)
+reghdfe iq_year gprc_year if em==1, absorb(ifs year) vce(cluster ifs)
+reghdfe iq_year gprc_year if em==0, absorb(ifs year) vce(cluster ifs)
