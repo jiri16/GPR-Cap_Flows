@@ -1,1 +1,8 @@
+*** Using sanctions as a covariate
 
+
+** merge 
+merge m:m iso3 year using "C:\Users\Lenovo\Desktop\GSDB_V3\USA", keepusing(l1savgnatshock l1savgpolshock l1savgrevshock l1savgtershock)
+drop if _merge==2
+drop _merge
+xtset ifs yq
