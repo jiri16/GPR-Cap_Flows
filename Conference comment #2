@@ -2,7 +2,20 @@
 
 
 ** merge 
-merge m:m iso3 year using "C:\Users\Lenovo\Desktop\GSDB_V3\USA", keepusing(l1savgnatshock l1savgpolshock l1savgrevshock l1savgtershock)
+merge m:m iso3 year using "C:\Users\Lenovo\Desktop\GSDB_V3\USA.dta", keepusing(scs_arms scs_milit scs_trade scs_financ scs_travel scs_other scs_target_mult scs_sender_mult)
 drop if _merge==2
 drop _merge
-xtset ifs yq
+xtset ifs ym
+
+* adjust
+replace scs_arms=0 if missing(scs_arms)
+replace scs_milit=0 if missing(scs_milit)
+replace scs_trade=0 if missing(scs_trade)
+replace scs_financ=0 if missing(scs_financ)
+replace scs_travel=0 if missing(scs_travel)
+replace scs_other=0 if missing(scs_other)
+replace scs_target_mult=0 if missing(scs_target_mult)
+replace scs_sender_mult=0 if missing(scs_sender_mult)
+
+** use in regression
+
