@@ -144,3 +144,25 @@ est store baseline6
 esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
 esttab baseline* using "em_interaction_finance.csv", plain br replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
 estimates clear
+
+
+
+*just finance interaction
+foreach x in scs_financ {
+reghdfe w_n_bond_hol c.gprc##`x' l1.w_n_bond_hol l2.w_n_bond_hol l3.w_n_bond_hol tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe w_n_bond_hol c.gprc##`x' l1.w_n_bond_hol l2.w_n_bond_hol l3.w_n_bond_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe w_n_bond_hol c.gprc##`x' l1.w_n_bond_hol l2.w_n_bond_hol l3.w_n_bond_hol gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+
+reghdfe w_n_stock_hol c.gprc##`x' l1.w_n_stock_hol l2.w_n_stock_hol l3.w_n_stock_hol tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline4
+reghdfe w_n_stock_hol c.gprc##`x' l1.w_n_stock_hol l2.w_n_stock_hol l3.w_n_stock_hol tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe w_n_stock_hol c.gprc##`x' l1.w_n_stock_hol l2.w_n_stock_hol l3.w_n_stock_hol gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2021,11)), absorb(ifs ym) vce(cluster ifs)
+est store baseline6
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
+esttab baseline* using "interaction_finance.csv", plain br replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
+estimates clear
