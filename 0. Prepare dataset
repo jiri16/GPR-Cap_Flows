@@ -1,13 +1,21 @@
 use "xxx\working_data.dta"
 
-// create normalized and winsorized flows
 
-// bonds
+** get stata dates
+
+gen ym = monthly(date, "YM")
+format ym %tm
+
+
+
+** create normalized and winsorized flows
+
+** bonds
 gen n_bond_hol = bt_us_net_pur_bond/bt_hol_bond
 winsor n_bond_hol, gen(w_n_bond_hol) p(0.01)
 replace w_n_bond_hol = w_n_bond_hol*100
 
-// equity
+** equity
 gen n_stock_hol = bt_us_net_pur_stock/bt_hol_stock
 winsor n_stock_hol, gen(w_n_stock_hol) p(0.01)
 replace w_n_stock_hol = w_n_stock_hol*100
