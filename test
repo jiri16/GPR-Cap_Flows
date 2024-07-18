@@ -27,7 +27,9 @@ estimates clear
 
 
 
-
+summarize bt_us_net_pur_bond bt_us_net_pur_stock w_n_bond_hol w_n_stock_hol gprc
+summarize bt_us_net_pur_bond bt_us_net_pur_stock w_n_bond_hol w_n_stock_hol gprc if em==0
+summarize bt_us_net_pur_bond bt_us_net_pur_stock w_n_bond_hol w_n_stock_hol gprc if em==1
 
 
 
