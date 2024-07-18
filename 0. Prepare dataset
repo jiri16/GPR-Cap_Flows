@@ -17,6 +17,15 @@ bysort ifs (ym): gen gr_er = (er - er[_n-1]) / er[_n-1]
 bysort ifs (ym): gen gr_msci = (msci - msci[_n-1]) / msci[_n-1]
 
 
+** create EM
+gen em=1
+replace em=0 if iso3=="AUS" | iso3=="BEL" | iso3=="CAN" |  iso3=="CHE" | iso3=="DEU" | iso3=="DNK" | iso3=="ESP" | iso3=="FIN" | iso3=="FRA" | iso3=="GBR" | iso3=="ITA" | iso3=="JPN" | iso3=="NLD" | iso3=="NOR" | iso3=="PRT" | iso3=="SWE"
+
+** creat EM dummy
+gen gprc_em = gprc*em
+
+
+
 ** create normalized and winsorized flows
 
 ** bonds
