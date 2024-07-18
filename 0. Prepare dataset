@@ -1,11 +1,20 @@
 use "xxx\working_data.dta"
 
 
-** get stata dates
+** get stata dates (18852)
 
 gen ym = monthly(date, "YM")
 format ym %tm
 
+
+** create controls variables
+encode iso3, generate(ifs)
+xtset ifs ym
+
+bysort ifs (ym): gen gr_us_indprod = (indprod_us - indprod_us[_n-1]) / indprod_us[_n-1]
+bysort ifs (ym): gen gr_indprod = (indprod - indprod[_n-1]) / indprod[_n-1]
+bysort ifs (ym): gen gr_er = (er - er[_n-1]) / er[_n-1]
+bysort ifs (ym): gen gr_msci = (msci - msci[_n-1]) / msci[_n-1]
 
 
 ** create normalized and winsorized flows
