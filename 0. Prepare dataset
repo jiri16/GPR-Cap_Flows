@@ -29,12 +29,15 @@ gen gprc_em = gprc*em
 ** create normalized and winsorized flows
 
 ** bonds
-gen n_bond_hol = bt_us_net_pur_bond/bt_hol_bond
+
+xtset ifs ym
+
+bysort ifs (ym): gen n_bond_hol = bt_us_net_pur_bond/bt_hol_bond
 winsor n_bond_hol, gen(w_n_bond_hol) p(0.01)
 replace w_n_bond_hol = w_n_bond_hol*100
 
 ** equity
-gen n_stock_hol = bt_us_net_pur_stock/bt_hol_stock
+bysort ifs (ym): gen n_stock_hol = bt_us_net_pur_stock/bt_hol_stock
 winsor n_stock_hol, gen(w_n_stock_hol) p(0.01)
 replace w_n_stock_hol = w_n_stock_hol*100
 
