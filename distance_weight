@@ -1,0 +1,29 @@
+# multiple of distance and gprc
+
+foreach x in ARG {
+
+by ifs (ym): gen `x'_x_gprc = gprc*dist`x'
+
+}
+
+
+
+# sum of "all but me" gprc (times distance)
+
+foreach x in arg {
+bysort ym: egen `x'_gprc = sum(`x'_x_gprc)
+xtset ifs ym
+by ifs (ym): replace `x'_gprc = `x'_gprc - `x'_x_gprc
+replace `x'_gprc = 0 if ifs!=199
+}
+
+
+
+#finish the numerator
+
+gen gprs = arg_gprc+ bra_gprc+ chl_gprc+ chn_gprc+ col_gprc+ egy_gprc+ hkg_gprc+ hun_gprc+ idn_gprc+ ind_gprc+ isr_gprc+ kor_gprc+ mex_gprc+ mys_gprc+ per_gprc+ phl_gprc+ pol_gprc+ rus_gprc+ tha_gprc+ tur_gprc+ twn_gprc+ ukr_gprc+ ven_gprc+ zaf_gprc
+
+
+
+#create variable
+by ifs (ym): gen n_gprs = dist_x_gprc_not_me/dist_not_me
