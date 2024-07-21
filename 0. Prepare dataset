@@ -74,21 +74,21 @@ drop p_stock_hol p_bond_hol
 
 
 ** dropping more
-* Generate quantile variables for 0.1% and 99.9% for n_stock_hol
+* Generate quantile variables for 1% and 99% for n_stock_hol
 xtile p_stock_hol = n_stock_hol, nq(1000)
 
 * Rename the variables
 gen w_n_stock_hol = n_stock_hol 
 gen w_n_bond_hol =  n_bond_hol 
 
-* Replace top and bottom 0.5% of n_stock_hol with missing
+* Replace top and bottom 1% of n_stock_hol with missing
 replace w_n_stock_hol = . if p_stock_hol <= 10
 replace w_n_stock_hol = . if p_stock_hol >= 991
 
-* Generate quantile variables for 0.1% and 99.9% for n_bond_hol
+* Generate quantile variables for 1% and 99% for n_bond_hol
 xtile p_bond_hol = n_bond_hol, nq(1000)
 
-* Replace top and bottom 0.1% of n_bond_hol with missing
+* Replace top and bottom 1% of n_bond_hol with missing
 replace w_n_bond_hol = . if p_bond_hol <= 10
 replace w_n_bond_hol = . if p_bond_hol >= 991
 
