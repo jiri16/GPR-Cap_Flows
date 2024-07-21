@@ -82,15 +82,15 @@ gen w_n_stock_hol = n_stock_hol
 gen w_n_bond_hol =  n_bond_hol 
 
 * Replace top and bottom 0.5% of n_stock_hol with missing
-replace w_n_stock_hol = . if p_stock_hol <= 5
-replace w_n_stock_hol = . if p_stock_hol >= 996
+replace w_n_stock_hol = . if p_stock_hol <= 10
+replace w_n_stock_hol = . if p_stock_hol >= 991
 
 * Generate quantile variables for 0.1% and 99.9% for n_bond_hol
 xtile p_bond_hol = n_bond_hol, nq(1000)
 
 * Replace top and bottom 0.1% of n_bond_hol with missing
-replace w_n_bond_hol = . if p_bond_hol <= 5
-replace w_n_bond_hol = . if p_bond_hol >= 996
+replace w_n_bond_hol = . if p_bond_hol <= 10
+replace w_n_bond_hol = . if p_bond_hol >= 991
 
 * Multiply each by a factor of 100
 replace w_n_stock_hol = w_n_stock_hol * 100
