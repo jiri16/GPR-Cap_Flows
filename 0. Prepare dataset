@@ -28,16 +28,14 @@ gen gprc_em = gprc*em
 
 ** create normalized and winsorized flows
 
-** bonds
-
 xtset ifs ym
 
 bysort ifs (ym): gen n_bond_hol = bt_us_net_pur_bond/bt_hol_bond[_n-1]
+bysort ifs (ym): gen n_stock_hol = bt_us_net_pur_stock/bt_hol_stock[_n-1]
+
+* winsor
 winsor n_bond_hol, gen(w_n_bond_hol) p(0.01)
 replace w_n_bond_hol = w_n_bond_hol*100
-
-** equity
-bysort ifs (ym): gen n_stock_hol = bt_us_net_pur_stock/bt_hol_stock[_n-1]
 winsor n_stock_hol, gen(w_n_stock_hol) p(0.01)
 replace w_n_stock_hol = w_n_stock_hol*100
 
@@ -49,20 +47,20 @@ replace w_n_stock_hol = w_n_stock_hol*100
 * Generate quantile variables for 0.5% and 99.5% for n_stock_hol
 xtile p_stock_hol = n_stock_hol, nq(200)
 
+* Rename the variables
+gen w_n_stock_hol= n_stock_hol 
+gen w_n_bond_hol= n_bond_hol 
+
 * Replace top and bottom 0.5% of n_stock_hol with missing
-replace n_stock_hol = . if p_stock_hol <= 1
-replace n_stock_hol = . if p_stock_hol >= 200
+replace w_n_stock_hol = . if p_stock_hol <= 1
+replace w_n_stock_hol = . if p_stock_hol >= 200
 
 * Generate quantile variables for 0.5% and 99.5% for n_bond_hol
 xtile p_bond_hol = n_bond_hol, nq(200)
 
 * Replace top and bottom 0.5% of n_bond_hol with missing
-replace n_bond_hol = . if p_bond_hol <= 1
-replace n_bond_hol = . if p_bond_hol >= 200
-
-* Rename the variables
-rename n_stock_hol w_n_stock_hol
-rename n_bond_hol w_n_bond_hol
+replace w_n_bond_hol = . if p_bond_hol <= 1
+replace w_n_bond_hol = . if p_bond_hol >= 200
 
 * Multiply each by a factor of 100
 replace w_n_stock_hol = w_n_stock_hol * 100
@@ -70,6 +68,38 @@ replace w_n_bond_hol = w_n_bond_hol * 100
 
 * Drop the temporary quantile variables
 drop p_stock_hol p_bond_hol
+
+
+
+
+
+** dropping more
+* Generate quantile variables for 0.1% and 99.9% for n_stock_hol
+xtile p_stock_hol = n_stock_hol, nq(1000)
+
+* Rename the variables
+gen w_n_stock_hol = n_stock_hol 
+gen w_n_bond_hol =  n_bond_hol 
+
+* Replace top and bottom 0.5% of n_stock_hol with missing
+replace w_n_stock_hol = . if p_stock_hol <= 5
+replace w_n_stock_hol = . if p_stock_hol >= 996
+
+* Generate quantile variables for 0.1% and 99.9% for n_bond_hol
+xtile p_bond_hol = n_bond_hol, nq(1000)
+
+* Replace top and bottom 0.1% of n_bond_hol with missing
+replace w_n_bond_hol = . if p_bond_hol <= 5
+replace w_n_bond_hol = . if p_bond_hol >= 996
+
+* Multiply each by a factor of 100
+replace w_n_stock_hol = w_n_stock_hol * 100
+replace w_n_bond_hol = w_n_bond_hol * 100
+
+* Drop the temporary quantile variables
+drop p_stock_hol p_bond_hol
+
+
 
 
 
