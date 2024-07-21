@@ -42,3 +42,34 @@ winsor n_stock_hol, gen(w_n_stock_hol) p(0.01)
 replace w_n_stock_hol = w_n_stock_hol*100
 
 
+
+** dropping 0.5%
+
+
+* Generate quantile variables for 0.5% and 99.5% for n_stock_hol
+xtile p_stock_hol = n_stock_hol, nq(200)
+
+* Replace top and bottom 0.5% of n_stock_hol with missing
+replace n_stock_hol = . if p_stock_hol <= 1
+replace n_stock_hol = . if p_stock_hol >= 200
+
+* Generate quantile variables for 0.5% and 99.5% for n_bond_hol
+xtile p_bond_hol = n_bond_hol, nq(200)
+
+* Replace top and bottom 0.5% of n_bond_hol with missing
+replace n_bond_hol = . if p_bond_hol <= 1
+replace n_bond_hol = . if p_bond_hol >= 200
+
+* Rename the variables
+rename n_stock_hol w_n_stock_hol
+rename n_bond_hol w_n_bond_hol
+
+* Multiply each by a factor of 100
+replace w_n_stock_hol = w_n_stock_hol * 100
+replace w_n_bond_hol = w_n_bond_hol * 100
+
+* Drop the temporary quantile variables
+drop p_stock_hol p_bond_hol
+
+
+
