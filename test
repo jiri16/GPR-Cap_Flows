@@ -252,3 +252,36 @@ esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o 
 estimates clear
 
 
+
+
+
+
+
+
+
+DO NOT RUN IN MAIN FILE
+******************************************************************************************************************************************
+
+* Calculate the average of gprc for em == 1, em == 0, and all observations
+bysort ym: egen gprc_avg_all = mean(gprc)
+bysort ym: egen gprc_avg_em1 = mean(cond(em == 1, gprc, .))
+bysort ym: egen gprc_avg_em0 = mean(cond(em == 0, gprc, .))
+
+* Keep only one observation per time period
+bysort ym: keep if _n == 1
+
+
+* Save the dataset with the averages
+keep ym gprc_avg_all gprc_avg_em1 gprc_avg_em0
+save averages, replace
+
+
+* Load the dataset with the averages
+use averages, clear
+
+* Generate a variable for the vertical line
+gen vline = ym == ym(2022,1)
+
+* Plot the averages
+line gprc_avg_all gprc_avg_em1 gprc_avg_em0 ym, xline(`ym_2022_1', lcolor(black) lpattern(solid) lwidth(medium)) xlabel(, format(%tm)) title("Average gprc Over Time") legend(order(1 "All" 2 "em==1" 3 "em==0"))
+
