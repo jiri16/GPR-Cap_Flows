@@ -31,6 +31,8 @@ estimates clear
 
 
 
+
+
 foreach x in w_n_bond_hol {
 
 reghdfe `x' gprc death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if em==1 &  inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
@@ -60,6 +62,33 @@ estimates clear
 
 
 
+foreach x in w_n_bond_hol {
+
+reghdfe `x' gprc death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if ae==1 &  inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe `x' gprc death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci  if ae==1 &  inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe `x' gprc death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if ae==1 &  inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+
+}
+
+foreach x in w_n_stock_hol {
+
+reghdfe `x' gprc death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if ae==1 &  inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline4
+reghdfe `x' gprc death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if ae==1 &  inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe `x' gprc death_rate scs_sender_mult  l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if ae==1 &  inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs ym) vce(cluster ifs)
+est store baseline6
+
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+
+estimates clear
+
+
+
 
 
 
@@ -97,6 +126,129 @@ estimates clear
 
 
 
+foreach x in w_n_bond_hol {
 
+reghdfe `x' gprc gprc_x_dep_bo dep_bo_gdp death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe `x' gprc gprc_x_dep_bo dep_bo_gdp death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe `x' gprc gprc_x_dep_bo dep_bo_gdp death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+
+
+}
+
+foreach x in w_n_stock_hol {
+
+reghdfe `x' gprc gprc_x_dep_eq dep_eq_gdp death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe `x' gprc gprc_x_dep_eq dep_eq_gdp death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline6
+reghdfe `x' gprc gprc_x_dep_eq dep_eq_gdp death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs ym) vce(cluster ifs)
+est store baseline7
+
+
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+
+estimates clear
+
+
+
+
+
+
+
+
+
+
+foreach x in w_n_bond_hol {
+
+reghdfe `x' gprc gprc_x_err er_regime death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe `x' gprc gprc_x_err er_regime death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe `x' gprc gprc_x_err er_regime death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+
+}
+
+foreach x in w_n_stock_hol {
+
+reghdfe `x' gprc gprc_x_err er_regime death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline4
+reghdfe `x' gprc gprc_x_err er_regime death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe `x' gprc gprc_x_err er_regime death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs ym) vce(cluster ifs)
+est store baseline6
+
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
+
+estimates clear
+
+
+
+
+
+
+
+
+foreach x in w_n_bond_hol {
+
+reghdfe `x' gprc gprc_x_ka_open ka_open death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe `x' gprc gprc_x_ka_open ka_open death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe `x' gprc gprc_x_ka_open ka_open death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+
+}
+
+foreach x in w_n_stock_hol {
+
+reghdfe `x' gprc gprc_x_ka_open ka_open death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline4
+reghdfe `x' gprc gprc_x_ka_open ka_open death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe `x' gprc gprc_x_ka_open ka_open death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs ym) vce(cluster ifs)
+est store baseline6
+
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
+
+estimates clear
+
+
+
+
+
+
+
+
+foreach x in w_n_bond_hol {
+
+reghdfe `x' gprc gprc_iq gprc_x_dep_bo gprc_x_err gprc_x_ka_open iq dep_bo_gdp er_regime ka_open l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline1
+reghdfe `x' gprc gprc_iq gprc_x_dep_bo gprc_x_err gprc_x_ka_open iq dep_bo_gdp er_regime ka_open  l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline2
+reghdfe `x' gprc gprc_iq gprc_x_dep_bo gprc_x_err gprc_x_ka_open iq dep_bo_gdp er_regime ka_open  l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs ym) vce(cluster ifs)
+est store baseline3
+
+}
+
+foreach x in w_n_stock_hol {
+
+reghdfe `x' gprc gprc_iq gprc_x_dep_eq gprc_x_err gprc_x_ka_open iq dep_eq_gdp er_regime ka_open  l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline4
+reghdfe `x' gprc gprc_iq gprc_x_dep_eq gprc_x_err gprc_x_ka_open iq dep_eq_gdp er_regime ka_open  l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs) vce(cluster ifs)
+est store baseline5
+reghdfe `x' gprc gprc_iq gprc_x_dep_eq gprc_x_err gprc_x_ka_open iq dep_eq_gdp er_regime ka_open  l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if inrange(ym, ym(1994,4), ym(2024,4)), absorb(ifs ym) vce(cluster ifs)
+est store baseline6
+
+}
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+
+estimates clear
 
 
