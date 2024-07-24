@@ -110,8 +110,35 @@ drop p_stock_hol p_bond_hol
 
 ** Create multiple of (inverse of) distance and GPRC
 
+foreach x in ARG AUS BEL BRA CAN CHE CHL CHN COL DEU DNK EGY ESP FIN FRA GBR HKG HUN IDN IND ISR ITA JPN KOR MEX MYS NLD NOR PER PHL POL PRT RUS SWE THA TUR TWN UKR VEN VNM ZAF {
+    bysort ifs (ym): gen `x'_x_gprc = gprc*dist`x'
+}
+
+** Sum of "all but me" 'x'_x_gprc
+
+foreach x in ARG AUS BEL BRA CAN CHE CHL CHN COL DEU DNK EGY ESP FIN FRA GBR HKG HUN IDN IND ISR ITA JPN KOR MEX MYS NLD NOR PER PHL POL PRT RUS SWE THA TUR TWN UKR VEN VNM ZAF {
+bysort ym: egen `x'_gprc = sum(`x'_x_gprc)
+xtset ifs ym
+bysort ifs (ym): replace `x'_gprc = `x'_gprc - `x'_x_gprc
+replace `x'_gprc = 0 if iso3!= "`x'"
+}
 
 
 
+** generate sum(GPRC/dist)
+
+gen dist_x_gprc_not_me = ARG_gprc + AUS_gprc + BEL_gprc + BRA_gprc + CAN_gprc + CHE_gprc + CHL_gprc + CHN_gprc + COL_gprc + DEU_gprc + DNK_gprc + EGY_gprc + ESP_gprc + FIN_gprc + FRA_gprc + GBR_gprc + HKG_gprc + HUN_gprc + IDN_gprc + IND_gprc + ISR_gprc + ITA_gprc + JPN_gprc + KOR_gprc + MEX_gprc + MYS_gprc + NLD_gprc + NOR_gprc + PER_gprc + PHL_gprc + POL_gprc + PRT_gprc + RUS_gprc + SWE_gprc + THA_gprc + TUR_gprc + TWN_gprc + UKR_gprc + VEN_gprc + VNM_gprc + ZAF_gprc
+
+** generate sum(dist) - not me
+gen dist_not_me = distARG + distAUS + distBEL + distBRA + distCAN + distCHE + distCHL + distCHN + distCOL + distDEU + distDNK + distEGY + distESP + distFIN + distFRA + distGBR + distHKG + distHUN + distIDN + distIND + distISR + distITA + distJPN + distKOR + distMEX + distMYS + distNLD + distNOR + distPER + distPHL + distPOL + distPRT + distRUS + distSWE + distTHA + distTUR + distTWN + distUKR + distVEN + distZAF + distVNM
+
+foreach country in ARG AUS BEL BRA CAN CHE CHL CHN COL DEU DNK EGY ESP FIN FRA GBR HKG HUN IDN IND ISR ITA JPN KOR MEX MYS NLD NOR PER PHL POL PRT RUS SWE THA TUR TWN UKR VEN ZAF VNM {
+    * Replace dist_not_me with adjusted value for each iso3
+    replace dist_not_me = dist_not_me - (dist`country') if iso3 == "`country'"
+}
+
+
+** Creat the variable GPRS
+by ifs (ym): gen n_gprs = dist_x_gprc_not_me/dist_not_me
 
 
