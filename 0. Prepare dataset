@@ -144,7 +144,7 @@ by ifs (ym): gen n_gprs = dist_x_gprc_not_me/dist_not_me
 
 
 
-
+gen n_gprs_em = n_gprs*em
 
 
 
