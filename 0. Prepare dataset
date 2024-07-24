@@ -195,3 +195,41 @@ replace em_n_gprs = 0 if em_n_gprs==.
 
 
 
+
+
+**** Creating GPRS variable for spillover part (AEs only)
+
+** Create multiple of (inverse of) distance and GPRC
+
+foreach x in AUS BEL CAN CHE DEU DNK ESP FIN FRA GBR ITA JPN NLD NOR PRT SWE {
+    bysort ifs (ym): gen ae_`x'_x_gprc = gprc*ae_dist`x'
+}
+
+
+** Sum of "all but me" 'x'_x_gprc
+
+foreach x in AUS BEL CAN CHE DEU DNK ESP FIN FRA GBR ITA JPN NLD NOR PRT SWE {
+bysort ym: egen ae_`x'_gprc = sum(ae_`x'_x_gprc)
+xtset ifs ym
+bysort ifs (ym): replace ae_`x'_gprc = ae_`x'_gprc - ae_`x'_x_gprc
+replace ae_`x'_gprc = 0 if iso3!= "`x'"
+}
+
+
+** generate sum(GPRC/dist)
+
+gen ae_dist_x_gprc_not_me = ae_AUS_gprc+ ae_BEL_gprc+ ae_CAN_gprc+ ae_CHE_gprc+ ae_DEU_gprc+ ae_DNK_gprc+ ae_ESP_gprc+ ae_FIN_gprc+ ae_FRA_gprc+ ae_GBR_gprc+ ae_ITA_gprc+ ae_JPN_gprc+ ae_NLD_gprc+ ae_NOR_gprc+ ae_PRT_gprc+ ae_SWE_gprc
+
+** generate sum(dist) - not me
+gen ae_dist_not_me = ae_distAUS+ ae_distBEL+ ae_distCAN+ ae_distCHE+ ae_distDEU+ ae_distDNK+ ae_distESP+ ae_distFIN+ ae_distFRA+ ae_distGBR+ ae_distITA+ ae_distJPN+ ae_distNLD+ ae_distNOR+ ae_distPRT+ ae_distSWE
+foreach country in AUS BEL CAN CHE DEU DNK ESP FIN FRA GBR ITA JPN NLD NOR PRT SWE {
+    * Replace dist_not_me with adjusted value for each iso3
+    replace ae_dist_not_me = ae_dist_not_me - (ae_dist`country') if iso3 == "`country'"
+}
+
+
+** Creat the variable GPRS
+by ifs (ym): gen ae_n_gprs = ae_dist_x_gprc_not_me/ae_dist_not_me
+replace ae_n_gprs = 0 if ae_n_gprs==.
+
+
