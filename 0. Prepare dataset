@@ -186,6 +186,7 @@ foreach country in ARG BRA CHL CHN COL EGY HKG HUN IDN IND ISR KOR MEX MYS PER P
 
 ** Creat the variable GPRS
 by ifs (ym): gen em_n_gprs = em_dist_x_gprc_not_me/em_dist_not_me
+replace em_n_gprs = 0 if em_n_gprs==.
 
 
 
