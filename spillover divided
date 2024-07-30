@@ -31,15 +31,6 @@ replace em_`x'_gprc = 0 if iso3!= "`x'"
 gen em_dist_x_gprc_not_me = em_ARG_gprc + em_BRA_gprc + em_CHL_gprc + em_CHN_gprc + em_COL_gprc + em_EGY_gprc + em_HKG_gprc + em_HUN_gprc + em_IDN_gprc + em_IND_gprc + em_ISR_gprc + em_KOR_gprc + em_MEX_gprc + em_MYS_gprc  + em_PER_gprc + em_PHL_gprc + em_POL_gprc + em_RUS_gprc + em_THA_gprc + em_TUR_gprc + em_TWN_gprc + em_UKR_gprc + em_VEN_gprc + em_VNM_gprc + em_ZAF_gprc
 
 
-
-
-
-
-k
-
-
-
-
 ** generate sum(dist) - not me
 gen em_dist_not_me = em_distARG +  em_distBRA + em_distCHL + em_distCHN + em_distCOL + em_distEGY  + em_distHKG + em_distHUN + em_distIDN + em_distIND + em_distISR + em_distKOR + em_distMEX + em_distMYS + em_distPER + em_distPHL + em_distPOL + em_distRUS + em_distTHA + em_distTUR + em_distTWN + em_distUKR + em_distVEN + em_distZAF + em_distVNM
 
@@ -100,3 +91,13 @@ by ifs (ym): gen em_ukrwar_n_gprs = em_dist_x_gprc_not_me/em_dist_not_me
 replace em_ukrwar_n_gprs = 0 if em_ukrwar_n_gprs==.
 
 drop em_ARG_x_gprc em_BRA_x_gprc em_CHL_x_gprc em_CHN_x_gprc em_COL_x_gprc em_EGY_x_gprc em_HKG_x_gprc em_HUN_x_gprc em_IDN_x_gprc em_IND_x_gprc em_ISR_x_gprc em_KOR_x_gprc em_MEX_x_gprc em_MYS_x_gprc em_PER_x_gprc em_PHL_x_gprc em_POL_x_gprc em_RUS_x_gprc em_THA_x_gprc em_TUR_x_gprc em_TWN_x_gprc em_UKR_x_gprc em_VEN_x_gprc em_VNM_x_gprc em_ZAF_x_gprc em_ARG_gprc em_BRA_gprc em_CHL_gprc em_CHN_gprc em_COL_gprc em_EGY_gprc em_HKG_gprc em_HUN_gprc em_IDN_gprc em_IND_gprc em_ISR_gprc em_KOR_gprc em_MEX_gprc em_MYS_gprc em_PER_gprc em_PHL_gprc em_POL_gprc em_RUS_gprc em_THA_gprc em_TUR_gprc em_TWN_gprc em_UKR_gprc em_VEN_gprc em_VNM_gprc em_ZAF_gprc em_dist_x_gprc_not_me em_dist_not_me
+
+
+
+
+
+
+
+
+
+
