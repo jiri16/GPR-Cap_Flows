@@ -1,7 +1,7 @@
 *********** ALL BUT UKR AND RUS
 
 
-drop em_ARG_x_gprc em_BRA_x_gprc em_CHL_x_gprc em_CHN_x_gprc em_COL_x_gprc em_EGY_x_gprc em_HKG_x_gprc em_HUN_x_gprc em_IDN_x_gprc em_IND_x_gprc em_ISR_x_gprc em_KOR_x_gprc em_MEX_x_gprc em_MYS_x_gprc em_PER_x_gprc em_PHL_x_gprc em_POL_x_gprc em_RUS_x_gprc em_THA_x_gprc em_TUR_x_gprc em_TWN_x_gprc em_UKR_x_gprc em_VEN_x_gprc em_VNM_x_gprc em_ZAF_x_gprc em_ARG_gprc em_BRA_gprc em_CHL_gprc em_CHN_gprc em_COL_gprc em_EGY_gprc em_HKG_gprc em_HUN_gprc em_IDN_gprc em_IND_gprc em_ISR_gprc em_KOR_gprc em_MEX_gprc em_MYS_gprc em_PER_gprc em_PHL_gprc em_POL_gprc em_RUS_gprc em_THA_gprc em_TUR_gprc em_TWN_gprc em_UKR_gprc em_VEN_gprc em_VNM_gprc em_ZAF_gprc em_dist_x_gprc_not_me em_dist_not_me em_n_gprs
+drop em_ARG_x_gprc em_BRA_x_gprc em_CHL_x_gprc em_CHN_x_gprc em_COL_x_gprc em_EGY_x_gprc em_HKG_x_gprc em_HUN_x_gprc em_IDN_x_gprc em_IND_x_gprc em_ISR_x_gprc em_KOR_x_gprc em_MEX_x_gprc em_MYS_x_gprc em_PER_x_gprc em_PHL_x_gprc em_POL_x_gprc em_RUS_x_gprc em_THA_x_gprc em_TUR_x_gprc em_TWN_x_gprc em_UKR_x_gprc em_VEN_x_gprc em_VNM_x_gprc em_ZAF_x_gprc em_ARG_gprc em_BRA_gprc em_CHL_gprc em_CHN_gprc em_COL_gprc em_EGY_gprc em_HKG_gprc em_HUN_gprc em_IDN_gprc em_IND_gprc em_ISR_gprc em_KOR_gprc em_MEX_gprc em_MYS_gprc em_PER_gprc em_PHL_gprc em_POL_gprc em_RUS_gprc em_THA_gprc em_TUR_gprc em_TWN_gprc em_UKR_gprc em_VEN_gprc em_VNM_gprc em_ZAF_gprc em_dist_x_gprc_not_me em_dist_not_me
 
 ** Create multiple of (inverse of) distance and GPRC
 
@@ -40,8 +40,8 @@ foreach country in ARG BRA CHL CHN COL EGY HKG HUN IDN IND ISR KOR MEX MYS PER P
 
 
 ** Creat the variable GPRS
-bysort ifs (ym): gen em_n_gprs = em_dist_x_gprc_not_me/em_dist_not_me
-replace em_n_gprs = 0 if em_n_gprs==.
+bysort ifs (ym): gen em_exukrwar_n_gprs = em_dist_x_gprc_not_me/em_dist_not_me
+replace em_exukrwar_n_gprs = 0 if em_exukrwar_n_gprs==.
 
 
 
@@ -86,6 +86,7 @@ foreach country in ARG BRA CHL CHN COL EGY HKG HUN IDN IND ISR KOR MEX MYS PER P
 
 
 ** Creat the variable GPRS
-by ifs (ym): gen ukr_rus_n_gprs = em_dist_x_gprc_not_me/em_dist_not_me
+by ifs (ym): gen em_ukrwar_n_gprs = em_dist_x_gprc_not_me/em_dist_not_me
+replace em_ukrwar_n_gprs = 0 if em_ukrwar_n_gprs==.
 
-
+drop em_ARG_x_gprc em_BRA_x_gprc em_CHL_x_gprc em_CHN_x_gprc em_COL_x_gprc em_EGY_x_gprc em_HKG_x_gprc em_HUN_x_gprc em_IDN_x_gprc em_IND_x_gprc em_ISR_x_gprc em_KOR_x_gprc em_MEX_x_gprc em_MYS_x_gprc em_PER_x_gprc em_PHL_x_gprc em_POL_x_gprc em_RUS_x_gprc em_THA_x_gprc em_TUR_x_gprc em_TWN_x_gprc em_UKR_x_gprc em_VEN_x_gprc em_VNM_x_gprc em_ZAF_x_gprc em_ARG_gprc em_BRA_gprc em_CHL_gprc em_CHN_gprc em_COL_gprc em_EGY_gprc em_HKG_gprc em_HUN_gprc em_IDN_gprc em_IND_gprc em_ISR_gprc em_KOR_gprc em_MEX_gprc em_MYS_gprc em_PER_gprc em_PHL_gprc em_POL_gprc em_RUS_gprc em_THA_gprc em_TUR_gprc em_TWN_gprc em_UKR_gprc em_VEN_gprc em_VNM_gprc em_ZAF_gprc em_dist_x_gprc_not_me em_dist_not_me
