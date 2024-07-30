@@ -34,6 +34,12 @@ gen em_dist_x_gprc_not_me = em_ARG_gprc + em_BRA_gprc + em_CHL_gprc + em_CHN_gpr
 
 
 
+
+k
+
+
+
+
 ** generate sum(dist) - not me
 gen em_dist_not_me = em_distARG +  em_distBRA + em_distCHL + em_distCHN + em_distCOL + em_distEGY  + em_distHKG + em_distHUN + em_distIDN + em_distIND + em_distISR + em_distKOR + em_distMEX + em_distMYS + em_distPER + em_distPHL + em_distPOL + em_distRUS + em_distTHA + em_distTUR + em_distTWN + em_distUKR + em_distVEN + em_distZAF + em_distVNM
 
