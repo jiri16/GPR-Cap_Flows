@@ -100,6 +100,14 @@ replace w_n_bond_hol = w_n_bond_hol * 100
 drop p_stock_hol p_bond_hol
 
 
+********************** GPRC UKR WAR 
+gen exukrwar_gprc = gprc
+replace exukrwar_gprc = 0 if (iso3=="UKR" | iso3=="RUS") & inrange(ym, ym(2022,2), ym(2022,12))
+
+gen ukrwar_gprc = 0
+replace ukrwar_gprc = gprc if (iso3=="UKR" | iso3=="RUS") & inrange(ym, ym(2022,2), ym(2022,12))
+
+
 
 
 
@@ -140,15 +148,7 @@ foreach country in ARG AUS BEL BRA CAN CHE CHL CHN COL DEU DNK EGY ESP FIN FRA G
 
 ** Creat the variable GPRS
 by ifs (ym): gen n_gprs = dist_x_gprc_not_me/dist_not_me
-
-
-
-
 gen n_gprs_em = n_gprs*em
-
-
-
-
 
 
 
