@@ -1,25 +1,25 @@
 foreach x in w_n_bond_hol {
 
-reghdfe `x' gprc gprc death_rate scs_sender_mult  l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2022,12)), absorb(ifs) vce(cluster ifs)
+reghdfe `x' gprc death_rate scs_sender_mult  l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2022,12)), absorb(ifs) vce(cluster ifs)
 est store baseline1
-reghdfe `x' gprc gprc death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci  if inrange(ym, ym(1994,4), ym(2022,12)), absorb(ifs) vce(cluster ifs)
+reghdfe `x' gprc death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci  if inrange(ym, ym(1994,4), ym(2022,12)), absorb(ifs) vce(cluster ifs)
 est store baseline2
-reghdfe `x' gprc gprc death_rate scs_sender_mult  l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if  inrange(ym, ym(1994,4), ym(2022,12)), absorb(ifs ym) vce(cluster ifs)
+reghdfe `x' gprc death_rate scs_sender_mult  l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if  inrange(ym, ym(1994,4), ym(2022,12)), absorb(ifs ym) vce(cluster ifs)
 est store baseline3
 
 }
 
 foreach x in w_n_stock_hol {
 
-reghdfe `x' gprc gprc death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2022,12)), absorb(ifs) vce(cluster ifs)
+reghdfe `x' gprc death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod if inrange(ym, ym(1994,4), ym(2022,12)), absorb(ifs) vce(cluster ifs)
 est store baseline4
-reghdfe `x' gprc gprc death_rate scs_sender_mult  l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if   inrange(ym, ym(1994,4), ym(2022,12)), absorb(ifs) vce(cluster ifs)
+reghdfe `x' gprc death_rate scs_sender_mult  l1.`x' l2.`x' l3.`x' tr_yield_1y vix gprc_us gr_us_indprod gr_indprod inf st_ir gr_er gr_msci if   inrange(ym, ym(1994,4), ym(2022,12)), absorb(ifs) vce(cluster ifs)
 est store baseline5
-reghdfe `x' gprc gprc  death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if  inrange(ym, ym(1994,4), ym(2022,12)), absorb(ifs ym) vce(cluster ifs)
+reghdfe `x' gprc  death_rate scs_sender_mult l1.`x' l2.`x' l3.`x' gr_indprod inf st_ir gr_er gr_msci if  inrange(ym, ym(1994,4), ym(2022,12)), absorb(ifs ym) vce(cluster ifs)
 est store baseline6
 
 }
-esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 
 estimates clear
 
@@ -48,7 +48,7 @@ reghdfe `x' gprc gprc_em death_rate scs_sender_mult  l1.`x' l2.`x' l3.`x' gr_ind
 est store baseline6
 
 }
-esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 
 estimates clear
 
@@ -94,7 +94,7 @@ reghdfe `x' gprc death_rate scs_sender_mult   l1.`x' l2.`x' l3.`x' gr_indprod in
 est store baseline6
 
 }
-esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 
 estimates clear
 
@@ -123,7 +123,7 @@ reghdfe `x' gprc death_rate scs_sender_mult   l1.`x' l2.`x' l3.`x' gr_indprod in
 est store baseline6
 
 }
-esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 
 estimates clear
 
@@ -153,7 +153,7 @@ reghdfe `x' gprc gprc_iq iq death_rate scs_sender_mult  l1.`x' l2.`x' l3.`x' gr_
 est store baseline6
 
 }
-esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 
 estimates clear
 
@@ -189,7 +189,7 @@ est store baseline7
 
 
 }
-esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 
 estimates clear
 
@@ -287,7 +287,7 @@ reghdfe `x' gprc gprc_iq gprc_x_dep_eq gprc_x_err gprc_x_ka_open iq dep_eq_gdp e
 est store baseline6
 
 }
-esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 
 estimates clear
 
@@ -319,7 +319,7 @@ reghdfe `x' gprc n_gprs death_rate scs_sender_mult  l1.`x' l2.`x' l3.`x' gr_indp
 est store baseline6
 
 }
-esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 
 estimates clear
 
@@ -354,7 +354,7 @@ reghdfe `x' gprc em_n_gprs death_rate scs_sender_mult  l1.`x' l2.`x' l3.`x' gr_i
 est store baseline6
 
 }
-esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 
 estimates clear
 
@@ -385,7 +385,7 @@ reghdfe `x' gprc gprc_em n_gprs n_gprs_em death_rate scs_sender_mult  l1.`x' l2.
 est store baseline6
 
 }
-esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 
 estimates clear
 
@@ -416,7 +416,7 @@ reghdfe `x' gprc n_gprs em_n_gprs ae_n_gprs death_rate scs_sender_mult  l1.`x' l
 est store baseline6
 
 }
-esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_o r2_a)
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 
 estimates clear
 
