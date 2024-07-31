@@ -107,7 +107,8 @@ replace exukrwar_gprc = 0 if (iso3=="UKR" | iso3=="RUS") & inrange(ym, ym(2022,2
 gen ukrwar_gprc = 0
 replace ukrwar_gprc = gprc if (iso3=="UKR" | iso3=="RUS") & inrange(ym, ym(2022,2), ym(2022,12))
 
-
+gen exukrwar_gprc_em = exukrwar_gprc*em
+gen ukrwar_gprc_em = ukrwar_gprc*em
 
 
 
