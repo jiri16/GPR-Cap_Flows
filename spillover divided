@@ -1,4 +1,4 @@
-*********** ALL BUT UKR AND RUS
+*********** ALL BUT UKR AND RUS (EM)
 
 
 drop em_ARG_x_gprc em_BRA_x_gprc em_CHL_x_gprc em_CHN_x_gprc em_COL_x_gprc em_EGY_x_gprc em_HKG_x_gprc em_HUN_x_gprc em_IDN_x_gprc em_IND_x_gprc em_ISR_x_gprc em_KOR_x_gprc em_MEX_x_gprc em_MYS_x_gprc em_PER_x_gprc em_PHL_x_gprc em_POL_x_gprc em_RUS_x_gprc em_THA_x_gprc em_TUR_x_gprc em_TWN_x_gprc em_UKR_x_gprc em_VEN_x_gprc em_VNM_x_gprc em_ZAF_x_gprc em_ARG_gprc em_BRA_gprc em_CHL_gprc em_CHN_gprc em_COL_gprc em_EGY_gprc em_HKG_gprc em_HUN_gprc em_IDN_gprc em_IND_gprc em_ISR_gprc em_KOR_gprc em_MEX_gprc em_MYS_gprc em_PER_gprc em_PHL_gprc em_POL_gprc em_RUS_gprc em_THA_gprc em_TUR_gprc em_TWN_gprc em_UKR_gprc em_VEN_gprc em_VNM_gprc em_ZAF_gprc em_dist_x_gprc_not_me em_dist_not_me
@@ -99,6 +99,51 @@ drop em_ARG_x_gprc em_BRA_x_gprc em_CHL_x_gprc em_CHN_x_gprc em_COL_x_gprc em_EG
 
 
 
+
+
+*********** ALL BUT UKR AND RUS (ALL)
+
+
+** Create multiple of (inverse of) distance and GPRC
+
+
+foreach x in ARG AUS BEL BRA CAN CHE CHL CHN COL DEU DNK EGY ESP FIN FRA GBR HKG HUN IDN IND ISR ITA JPN KOR MEX MYS NLD NOR PER PHL POL PRT RUS SWE THA TUR TWN UKR VEN VNM ZAF {
+    bysort ifs (ym): gen `x'_x_gprc = gprc*dist`x'
+}
+
+foreach x in ARG AUS BEL BRA CAN CHE CHL CHN COL DEU DNK EGY ESP FIN FRA GBR HKG HUN IDN IND ISR ITA JPN KOR MEX MYS NLD NOR PER PHL POL PRT RUS SWE THA TUR TWN UKR VEN VNM ZAF {
+    replace `x'_x_gprc = 0 if (iso3=="UKR" | iso3=="RUS") & inrange(ym, ym(2022,2), ym(2022,12))
+}
+
+
+
+** Sum of "all but me" 'x'_x_gprc
+
+foreach x in ARG AUS BEL BRA CAN CHE CHL CHN COL DEU DNK EGY ESP FIN FRA GBR HKG HUN IDN IND ISR ITA JPN KOR MEX MYS NLD NOR PER PHL POL PRT RUS SWE THA TUR TWN UKR VEN VNM ZAF {
+bysort ym: egen `x'_gprc = total(`x'_x_gprc)
+xtset ifs ym
+bysort ifs (ym): replace `x'_gprc = `x'_gprc - `x'_x_gprc
+replace `x'_gprc = 0 if iso3!= "`x'"
+}
+
+
+** generate sum(GPRC/dist)
+
+gen dist_x_gprc_not_me = ARG_gprc + BRA_gprc + CHL_gprc + CHN_gprc + COL_gprc + EGY_gprc + HKG_gprc + HUN_gprc + IDN_gprc + IND_gprc + ISR_gprc + KOR_gprc + MEX_gprc + MYS_gprc  + PER_gprc + PHL_gprc + POL_gprc + RUS_gprc + THA_gprc + TUR_gprc + TWN_gprc + UKR_gprc + VEN_gprc + VNM_gprc + ZAF_gprc
+
+
+** generate sum(dist) - not me
+gen dist_not_me = distARG +  distBRA + distCHL + distCHN + distCOL + distEGY  + distHKG + distHUN + distIDN + distIND + distISR + distKOR + distMEX + distMYS + distPER + distPHL + distPOL + distRUS + distTHA + distTUR + distTWN + distUKR + distVEN + distZAF + distVNM
+
+foreach country in ARG AUS BEL BRA CAN CHE CHL CHN COL DEU DNK EGY ESP FIN FRA GBR HKG HUN IDN IND ISR ITA JPN KOR MEX MYS NLD NOR PER PHL POL PRT RUS SWE THA TUR TWN UKR VEN VNM ZAF {
+    * Replace dist_not_me with adjusted value for each iso3
+    replace dist_not_me = dist_not_me - (dist`country') if iso3 == "`country'"
+}
+
+
+** Creat the variable GPRS
+bysort ifs (ym): gen exukrwar_n_gprs = dist_x_gprc_not_me/dist_not_me
+replace exukrwar_n_gprs = 0 if exukrwar_n_gprs==.
 
 
 
