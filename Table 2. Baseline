@@ -19,7 +19,7 @@ reghdfe `x' gprc ukrwar_x_gprc ukr_rus_war death_rate scs_sender_mult l1.`x' l2.
 est store baseline6
 
 }
-esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2_a)
+esttab baseline*, b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 esttab baseline* using "Table 2.csv", plain br replace b(%9.3f) se(%9.3f) star(* 0.10 ** 0.05 *** 0.01) stats(N r2 r2_a)
 estimates clear
 
