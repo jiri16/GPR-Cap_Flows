@@ -106,7 +106,7 @@ drop em_ARG_x_gprc em_BRA_x_gprc em_CHL_x_gprc em_CHN_x_gprc em_COL_x_gprc em_EG
 
 ** Create multiple of (inverse of) distance and GPRC
 
-drop ARG_x_gprc AUS_x_gprc BEL_x_gprc BRA_x_gprc CAN_x_gprc CHE_x_gprc CHL_x_gprc CHN_x_gprc COL_x_gprc DEU_x_gprc DNK_x_gprc EGY_x_gprc ESP_x_gprc FIN_x_gprc FRA_x_gprc GBR_x_gprc HKG_x_gprc HUN_x_gprc IDN_x_gprc IND_x_gprc ISR_x_gprc ITA_x_gprc JPN_x_gprc KOR_x_gprc MEX_x_gprc MYS_x_gprc NLD_x_gprc NOR_x_gprc PER_x_gprc PHL_x_gprc POL_x_gprc PRT_x_gprc RUS_x_gprc SWE_x_gprc THA_x_gprc TUR_x_gprc TWN_x_gprc UKR_x_gprc VEN_x_gprc VNM_x_gprc ZAF_x_gprc ARG_gprc AUS_gprc BEL_gprc BRA_gprc CAN_gprc CHE_gprc CHL_gprc CHN_gprc COL_gprc DEU_gprc DNK_gprc EGY_gprc ESP_gprc FIN_gprc FRA_gprc GBR_gprc HKG_gprc HUN_gprc IDN_gprc IND_gprc ISR_gprc ITA_gprc JPN_gprc KOR_gprc MEX_gprc MYS_gprc NLD_gprc NOR_gprc PER_gprc PHL_gprc POL_gprc PRT_gprc RUS_gprc SWE_gprc THA_gprc TUR_gprc TWN_gprc UKR_gprc VEN_gprc VNM_gprc ZAF_gprc dist_x_gprc_not_me dist_not_me
+*drop ARG_x_gprc AUS_x_gprc BEL_x_gprc BRA_x_gprc CAN_x_gprc CHE_x_gprc CHL_x_gprc CHN_x_gprc COL_x_gprc DEU_x_gprc DNK_x_gprc EGY_x_gprc ESP_x_gprc FIN_x_gprc FRA_x_gprc GBR_x_gprc HKG_x_gprc HUN_x_gprc IDN_x_gprc IND_x_gprc ISR_x_gprc ITA_x_gprc JPN_x_gprc KOR_x_gprc MEX_x_gprc MYS_x_gprc NLD_x_gprc NOR_x_gprc PER_x_gprc PHL_x_gprc POL_x_gprc PRT_x_gprc RUS_x_gprc SWE_x_gprc THA_x_gprc TUR_x_gprc TWN_x_gprc UKR_x_gprc VEN_x_gprc VNM_x_gprc ZAF_x_gprc ARG_gprc AUS_gprc BEL_gprc BRA_gprc CAN_gprc CHE_gprc CHL_gprc CHN_gprc COL_gprc DEU_gprc DNK_gprc EGY_gprc ESP_gprc FIN_gprc FRA_gprc GBR_gprc HKG_gprc HUN_gprc IDN_gprc IND_gprc ISR_gprc ITA_gprc JPN_gprc KOR_gprc MEX_gprc MYS_gprc NLD_gprc NOR_gprc PER_gprc PHL_gprc POL_gprc PRT_gprc RUS_gprc SWE_gprc THA_gprc TUR_gprc TWN_gprc UKR_gprc VEN_gprc VNM_gprc ZAF_gprc dist_x_gprc_not_me dist_not_me
 
 foreach x in ARG AUS BEL BRA CAN CHE CHL CHN COL DEU DNK EGY ESP FIN FRA GBR HKG HUN IDN IND ISR ITA JPN KOR MEX MYS NLD NOR PER PHL POL PRT RUS SWE THA TUR TWN UKR VEN VNM ZAF {
     bysort ifs (ym): gen `x'_x_gprc = gprc*dist`x'
@@ -130,11 +130,11 @@ replace `x'_gprc = 0 if iso3!= "`x'"
 
 ** generate sum(GPRC/dist)
 
-gen dist_x_gprc_not_me = ARG_gprc + BRA_gprc + CHL_gprc + CHN_gprc + COL_gprc + EGY_gprc + HKG_gprc + HUN_gprc + IDN_gprc + IND_gprc + ISR_gprc + KOR_gprc + MEX_gprc + MYS_gprc  + PER_gprc + PHL_gprc + POL_gprc + RUS_gprc + THA_gprc + TUR_gprc + TWN_gprc + UKR_gprc + VEN_gprc + VNM_gprc + ZAF_gprc
+gen dist_x_gprc_not_me = ARG_gprc + AUS_gprc + BEL_gprc + BRA_gprc + CAN_gprc + CHE_gprc + CHL_gprc + CHN_gprc + COL_gprc + DEU_gprc + DNK_gprc + EGY_gprc + ESP_gprc + FIN_gprc + FRA_gprc + GBR_gprc + HKG_gprc + HUN_gprc + IDN_gprc + IND_gprc + ISR_gprc + ITA_gprc + JPN_gprc + KOR_gprc + MEX_gprc + MYS_gprc + NLD_gprc + NOR_gprc + PER_gprc + PHL_gprc + POL_gprc + PRT_gprc + RUS_gprc + SWE_gprc + THA_gprc + TUR_gprc + TWN_gprc + UKR_gprc + VEN_gprc + VNM_gprc + ZAF_gprc
 
 
 ** generate sum(dist) - not me
-gen dist_not_me = distARG +  distBRA + distCHL + distCHN + distCOL + distEGY  + distHKG + distHUN + distIDN + distIND + distISR + distKOR + distMEX + distMYS + distPER + distPHL + distPOL + distRUS + distTHA + distTUR + distTWN + distUKR + distVEN + distZAF + distVNM
+gen dist_not_me = distARG + distAUS + distBEL + distBRA + distCAN + distCHE + distCHL + distCHN + distCOL + distDEU + distDNK + distEGY + distESP + distFIN + distFRA + distGBR + distHKG + distHUN + distIDN + distIND + distISR + distITA + distJPN + distKOR + distMEX + distMYS + distNLD + distNOR + distPER + distPHL + distPOL + distPRT + distRUS + distSWE + distTHA + distTUR + distTWN + distUKR + distVEN + distZAF + distVNM
 
 foreach country in ARG AUS BEL BRA CAN CHE CHL CHN COL DEU DNK EGY ESP FIN FRA GBR HKG HUN IDN IND ISR ITA JPN KOR MEX MYS NLD NOR PER PHL POL PRT RUS SWE THA TUR TWN UKR VEN VNM ZAF {
     * Replace dist_not_me with adjusted value for each iso3
@@ -180,10 +180,12 @@ replace `x'_gprc = 0 if iso3!= "`x'"
 
 ** generate sum(GPRC/dist)
 
-gen dist_x_gprc_not_me = ARG_gprc + BRA_gprc + CHL_gprc + CHN_gprc + COL_gprc + EGY_gprc + HKG_gprc + HUN_gprc + IDN_gprc + IND_gprc + ISR_gprc + KOR_gprc + MEX_gprc + MYS_gprc  + PER_gprc + PHL_gprc + POL_gprc + RUS_gprc + THA_gprc + TUR_gprc + TWN_gprc + UKR_gprc + VEN_gprc + VNM_gprc + ZAF_gprc
+gen dist_x_gprc_not_me = ARG_gprc + AUS_gprc + BEL_gprc + BRA_gprc + CAN_gprc + CHE_gprc + CHL_gprc + CHN_gprc + COL_gprc + DEU_gprc + DNK_gprc + EGY_gprc + ESP_gprc + FIN_gprc + FRA_gprc + GBR_gprc + HKG_gprc + HUN_gprc + IDN_gprc + IND_gprc + ISR_gprc + ITA_gprc + JPN_gprc + KOR_gprc + MEX_gprc + MYS_gprc + NLD_gprc + NOR_gprc + PER_gprc + PHL_gprc + POL_gprc + PRT_gprc + RUS_gprc + SWE_gprc + THA_gprc + TUR_gprc + TWN_gprc + UKR_gprc + VEN_gprc + VNM_gprc + ZAF_gprc
+
 
 ** generate sum(dist) - not me
-gen dist_not_me = distARG + distBRA + distCHL + distCHN + distCOL + distEGY  + distHKG + distHUN + distIDN + distIND + distISR + distKOR + distMEX + distMYS + distPER + distPHL + distPOL + distRUS + distTHA + distTUR + distTWN + distUKR + distVEN + distZAF + distVNM
+gen dist_not_me = distARG + distAUS + distBEL + distBRA + distCAN + distCHE + distCHL + distCHN + distCOL + distDEU + distDNK + distEGY + distESP + distFIN + distFRA + distGBR + distHKG + distHUN + distIDN + distIND + distISR + distITA + distJPN + distKOR + distMEX + distMYS + distNLD + distNOR + distPER + distPHL + distPOL + distPRT + distRUS + distSWE + distTHA + distTUR + distTWN + distUKR + distVEN + distZAF + distVNM
+
 
 foreach country in ARG AUS BEL BRA CAN CHE CHL CHN COL DEU DNK EGY ESP FIN FRA GBR HKG HUN IDN IND ISR ITA JPN KOR MEX MYS NLD NOR PER PHL POL PRT RUS SWE THA TUR TWN UKR VEN VNM ZAF {
     * Replace dist_not_me with adjusted value for each iso3
