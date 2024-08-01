@@ -203,4 +203,20 @@ drop ARG_x_gprc AUS_x_gprc BEL_x_gprc BRA_x_gprc CAN_x_gprc CHE_x_gprc CHL_x_gpr
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+*************** variables
+
+
+gen exukrwar_n_gprs_em = exukrwar_n_gprs*em
    
