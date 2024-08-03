@@ -19,7 +19,7 @@ drop recession
 
 
 * Summarize and generate variables
-summarize ma3_bond_flow
+summarize ma3_stock_flow
 generate recession = r(max) if usrec == 1
 replace recession = r(min) if usrec == 0
 summarize ma3_stock_flow
