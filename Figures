@@ -1,5 +1,6 @@
 #Figure 1.A
-line em_total_hol ae_total_hol ym if inrange(ym, ym(1994,4), ym(2022,12)), graphregion(color(white)) sort
+line em_total_hol ae_total_hol ym if inrange(ym, ym(1994,4), ym(2022,12)), graphregion(color(white)) legend(position(12) ring(0) rows(1)) sort
+line em_total_hol_share ae_total_hol_share ym if inrange(ym, ym(1994,4), ym(2022,12)), graphregion(color(white)) legend(position(12) ring(0) rows(1)) sort
 
 #Figure 1
 * Summarize and generate variables
