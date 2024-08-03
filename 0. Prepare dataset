@@ -247,3 +247,80 @@ by ifs (ym): gen ae_n_gprs = ae_dist_x_gprc_not_me/ae_dist_not_me
 replace ae_n_gprs = 0 if ae_n_gprs==.
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+************** Variables for figures
+gen usrec = 0
+replace usrec = 1 if inrange(ym, ym(2001,4), ym(2001,11))
+replace usrec = 1 if inrange(ym, ym(2008,1), ym(2009,6))
+replace usrec = 1 if inrange(ym, ym(2020,3), ym(2020,4))
+
+
+bysort ym: egen us_holdings_bond = sum( bt_hol_bond )
+bysort ym: egen us_holdings_stock = sum( bt_hol_stock )
+
+bysort ym: egen us_purchases_bond = sum( bt_us_net_pur_bond )
+bysort ym: egen us_purchases_stock = sum( bt_us_net_pur_stock )
+
+xtset ifs ym
+gen m3_us_holdings_bond = (us_holdings_bond[_n-1]+us_holdings_bond+us_holdings_bond[_n+1])/3
+gen m3_us_holdings_stock = (us_holdings_stock[_n-1]+us_holdings_stock+us_holdings_stock[_n+1])/3
+gen m3_us_purchases_bond = (us_purchases_bond[_n-1]+us_purchases_bond+us_purchases_bond[_n+1])/3
+gen m3_us_purchases_stock = (us_purchases_stock[_n-1]+us_purchases_stock+us_purchases_stock[_n+1])/3
+
+
+
+xtset ifs ym
+gen ma3_bond_flow = m3_us_purchases_bond/m3_us_holdings_bond[_n-1]
+gen ma3_stock_flow = m3_us_purchases_stock/m3_us_holdings_stock[_n-1]
+
+replace ma3_bond_flow = ma3_bond_flow*100
+replace ma3_stock_flow = ma3_stock_flow*100
+
+
+
+
+
+*** generate weighted average gprc
+
+gen tot_holdings = bt_hol_bond+bt_hol_stock
+
+
+* Calculate the total weighted gprc and the sum of weights for each time period
+bysort ym: egen total_weighted_gprc = total(gprc * tot_holdings)
+bysort ym: egen total_weights = total(tot_holdings)
+
+* Calculate the weighted average gprc for each time period
+gen gprc_wavg = total_weighted_gprc / total_weights
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
