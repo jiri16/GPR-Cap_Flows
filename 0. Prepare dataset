@@ -310,11 +310,13 @@ gen gprc_wavg = total_weighted_gprc / total_weights
 
 
 
+bysort ym: egen em_total_hol = sum(tot_holdings) if em==1
+bysort ym: egen ae_total_hol = sum(tot_holdings) if em==0
 
+gen us_total_hol = us_holdings_bond + us_holdings_stock
 
-
-
-
+gen em_total_hol_share = em_total_hol/us_total_hol*100
+gen ae_total_hol_share = ae_total_hol/us_total_hol*100
 
 
 
