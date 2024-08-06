@@ -11,7 +11,7 @@ summarize ma3_bond_flow
 local min = r(min)
 
 * Create the twoway plot with the customized legend, colors, and title
-twoway (area recession ym if inrange(ym, ym(1994,4), ym(2021,11)), color(gs14) base(`min')) (line ma3_bond_flow ym if inrange(ym, ym(1994,4), ym(2021,11)), sort lcolor(red)) (line gprc_wavg ym if inrange(ym, ym(1994,4), ym(2021,11)), sort lcolor(blue) graphregion(color(white))), legend(position(12) ring(0) rows(1)) title("Bonds")
+twoway (area recession ym if inrange(ym, ym(1994,4), ym(2022,12)), color(gs14) base(`min')) (line ma3_bond_flow ym if inrange(ym, ym(1994,4), ym(2022,12)), sort lcolor(red)) (line gprc_wavg ym if inrange(ym, ym(1994,4), ym(2022,12)), sort lcolor(blue) graphregion(color(white))), legend(position(12) ring(0) rows(1)) title("Bonds")
 
 * Clean up
 drop recession
@@ -27,7 +27,7 @@ summarize ma3_stock_flow
 local min = r(min)
 
 * Create the twoway plot with the customized legend, colors, and title
-twoway (area recession ym if inrange(ym, ym(1994,4), ym(2021,11)), color(gs14) base(`min')) (line ma3_stock_flow ym if inrange(ym, ym(1994,4), ym(2021,11)), sort lcolor(red)) (line gprc_wavg ym if inrange(ym, ym(1994,4), ym(2021,11)), sort lcolor(blue) graphregion(color(white))), legend(position(12) ring(0) rows(1)) title("Equity")
+twoway (area recession ym if inrange(ym, ym(1994,4), ym(2022,12)), color(gs14) base(`min')) (line ma3_stock_flow ym if inrange(ym, ym(1994,4), ym(2022,12)), sort lcolor(red)) (line gprc_wavg ym if inrange(ym, ym(1994,4), ym(2022,12)), sort lcolor(blue) graphregion(color(white))), legend(position(12) ring(0) rows(1)) title("Equity")
 
 * Clean up
 drop recession
