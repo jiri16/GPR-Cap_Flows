@@ -1,0 +1,2 @@
+pwcorr iq dep_eq_gdp dep_bo_gdp er_regime ka_open if em==0
+pwcorr iq dep_eq_gdp dep_bo_gdp er_regime ka_open if em==1
