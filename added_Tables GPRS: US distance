@@ -1,14 +1,8 @@
 **** add USA distance
 use "C:\Users\jirih\Desktop\Research\SYC\GPR\new_working_data.dta" 
-merge m:m iso3 using "C:\Users\jirih\Desktop\Research\SYC\GPR\data\usa distance.dta", keepusing(dist)
-drop if _merge==2
-drop _merge
 
 
 
-**** generate distUSA
-gen distUSA = 1/dist
-drop dist
 
 xtset ifs ym
 
@@ -16,7 +10,10 @@ xtset ifs ym
 
 
 **** generate GPRS_US
-gen gprs_us = gprc*distUSA
+
+bysort ym: egen tot_dist_USA = total(distUSA)
+drop gprs_us
+gen gprs_us = gprc*distUSA/tot_dist_USA
 
 
 
