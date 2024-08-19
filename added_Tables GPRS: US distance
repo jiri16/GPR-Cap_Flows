@@ -10,7 +10,7 @@ xtset ifs ym
 
 
 **** generate 
-gen gprc_us_dist = gprc*distUSA
+gen gprc_us_dist = gprc*distUSA*1000
 
 
 
